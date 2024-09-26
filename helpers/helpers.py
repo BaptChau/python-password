@@ -1,5 +1,6 @@
 import yaml
 import random
+import string
 
 PASSWORD_EXCLUDED = open("./helpers/dictionary.yaml", 'r')
 def enter_password_length() -> int:
@@ -17,7 +18,7 @@ def check_in_exclusion(password: str) -> bool:
     return True
 
 def generate_password(length: int) -> str:
-    char_list = "azertyuipqsdfghjklmwxcvbnAZERTYUIPQSDFGHJKLMWXCVBN&É(-_)=$*!:&~#{[|]}+=12346546789+,?./§"
+    char_list = string.digits+string.punctuation+string.ascii_uppercase+string.ascii_lowercase
     password = ''.join(random.choice(char_list) for _ in range(length))
     if check_in_exclusion(password=password):
         return password
